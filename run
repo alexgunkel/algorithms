@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: alexander
+ * Date: 07.03.18
+ * Time: 22:17
+ */
+require_once __DIR__ . '/vendor/autoload.php';
+
+$sorter = new \Alex\Sort\InsertionSort;
+$dataProvider = new \Alex\Sort\DataProvider;
+
+foreach (['10', '100', '1000', '10000', '100000'] as $value) {
+    $data = $dataProvider('random' . $value);
+
+    $start = microtime(true);
+    $result = $sorter($data);
+    $duration = microtime(true) - $start;
+
+    echo "Data-Pool: $value\n";
+    echo "Dauer: $duration\n";
+    echo "Memory: " . memory_get_peak_usage(true) . "\n";
+}
+
