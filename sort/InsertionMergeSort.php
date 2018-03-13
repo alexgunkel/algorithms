@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: alexander
- * Date: 08.03.18
- * Time: 22:59
+ * Date: 12.03.18
+ * Time: 22:31
  */
 
 namespace Alex\Sort;
@@ -11,30 +11,27 @@ namespace Alex\Sort;
 
 use Alex\Sort\Lib\MergeFunction;
 
-class MergeSort implements Sorter
+class InsertionMergeSort implements Sorter
 {
+    private $insertionSort;
+
     use MergeFunction;
 
-    /**
-     * @param array $sortables
-     * @return array
-     */
+    public function __construct()
+    {
+        $this->insertionSort = new InsertionSort;
+    }
+
     public function __invoke(array &$sortables): void
     {
         $sortables = $this->sort($sortables);
     }
 
-    /**
-     * Basic sorting method
-     *
-     * @param array $sortables
-     *
-     * @return array
-     */
-    private function sort(array $sortables): array
+    private function sort(array $sortables) : array
     {
         $length = count($sortables);
-        if ($length === 1) {
+        if ($length <= 30) {
+            $this->insertionSort->__invoke($sortables);
             return $sortables;
         }
 

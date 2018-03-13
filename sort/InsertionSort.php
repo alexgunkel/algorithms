@@ -9,23 +9,21 @@
 namespace Alex\Sort;
 
 
+use Alex\Sort\Lib\ChangePositions;
+
 class InsertionSort implements Sorter
 {
-    public function __invoke(array $sortables): array
+    use ChangePositions;
+
+    public function __invoke(array &$sortables): void
     {
-        $output = array();
-        $lengthOfOutput = 0;
-        foreach ($sortables as $element) {
-            $max = $lengthOfOutput;
-            while (0 < $max && $output[$max - 1] > $element) {
-                $output[$max] = $output[$max - 1];
-                $max--;
+        $length = count($sortables);
+        for ($i = 1; $i < $length; $i++) {
+            for ($j = $i; $j > 0; $j--) {
+                if ($sortables[$j] < $sortables[$j-1]) {
+                    $this->changePositions($sortables, $j, $j-1);
+                }
             }
-
-            $output[$max] = $element;
-            $lengthOfOutput++;
         }
-
-        return $output;
     }
 }

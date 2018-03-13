@@ -9,9 +9,13 @@
 namespace Alex\Sort;
 
 
+use Alex\Sort\Lib\ChangePositions;
+
 class BubbleSort implements Sorter
 {
-    public function __invoke(array $sortables) : array
+    use ChangePositions;
+
+    public function __invoke(array &$sortables) : void
     {
         $length = count($sortables);
         $changed = true;
@@ -24,14 +28,5 @@ class BubbleSort implements Sorter
                 }
             }
         }
-
-        return $sortables;
-    }
-
-    private function changePositions(array &$sortables, int $posOne, int $posTwo)
-    {
-        $tmp = $sortables[$posOne];
-        $sortables[$posOne] = $sortables[$posTwo];
-        $sortables[$posTwo] = $tmp;
     }
 }

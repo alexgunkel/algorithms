@@ -11,5 +11,5 @@ namespace Alex\Sort;
 
 interface Sorter
 {
-    public function __invoke(array $sortables): array ;
+    public function __invoke(array &$sortables): void ;
 }

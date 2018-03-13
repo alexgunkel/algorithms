@@ -11,14 +11,14 @@ class SelectSort implements Sorter
 {
     private $output = array();
 
-    public function __invoke(array $sortables): array
+    public function __invoke(array &$sortables): void
     {
         $boundary = count($sortables);
         while (0 < $boundary--) {
             $this->output[] = $this->extractSmallest($sortables);
         }
 
-        return $this->output;
+        $sortables = $this->output;
     }
 
     private function extractSmallest(array &$sortables)

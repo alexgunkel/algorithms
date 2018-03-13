@@ -43,8 +43,8 @@ abstract class AbstractTestCase extends TestCase
      */
     public function testSorting(array $sortables)
     {
-        $sorter = $this->fixture;
-        $result = $sorter($sortables);
+        $result = $sortables;
+        $this->fixture->__invoke($result);
 
         self::assertEquals(
             count($sortables),
