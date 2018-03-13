@@ -12,6 +12,8 @@ $sorters = [
     new \Alex\Sort\ShellSort,
     new \Alex\Sort\InsertionMergeSort,
     new \Alex\Sort\MergeSort,
+    new \Alex\Sort\InPlaceMergeSort,
+    new \Alex\Sort\BottomUpMergeSort,
     new \Alex\Sort\QuickSort,
     //new \Alex\Sort\InsertionSort,
     //new \Alex\Sort\SelectSort,

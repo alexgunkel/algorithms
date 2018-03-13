@@ -30,7 +30,7 @@ class InsertionMergeSort implements Sorter
     private function sort(array $sortables) : array
     {
         $length = count($sortables);
-        if ($length <= 30) {
+        if ($length <= 15) {
             $this->insertionSort->__invoke($sortables);
             return $sortables;
         }
