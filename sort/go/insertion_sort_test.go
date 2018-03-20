@@ -1,14 +1,14 @@
 package sort
 
 import (
+	"github.com/stretchr/testify/assert"
 	"strconv"
 	"testing"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestInsertionSort(testing *testing.T) {
 	content, _ := readLines("./data/random10")
-	Insertion_sort(&content)
+	InsertionSort(&content)
 
 	for key, number := range content {
 		if key > 0 {
@@ -18,21 +18,21 @@ func TestInsertionSort(testing *testing.T) {
 	}
 }
 
-var insertion_result sortables
+var insertionResult sortables
 
 func benchmarkInsertionSort(amount int64, b *testing.B) {
 	file := "./data/random" + strconv.FormatInt(amount, 10)
 	content, _ := readLines(file)
-	var new_result sortables
+	var newResult sortables
 	for n := 0; n < b.N; n++ {
-		new_result = sort_insertion(content)
+		newResult = insertionSort(content)
 	}
 
-	insertion_result = new_result
+	insertionResult = newResult
 }
 
-func BenchmarkInsertionSort10(b *testing.B) { benchmarkInsertionSort(10, b) }
-func BenchmarkInsertionSort100(b *testing.B) { benchmarkInsertionSort(100, b) }
-func BenchmarkInsertionSort1000(b *testing.B) { benchmarkInsertionSort(1000, b) }
-func BenchmarkInsertionSort10000(b *testing.B) { benchmarkInsertionSort(10000, b) }
+func BenchmarkInsertionSort10(b *testing.B)     { benchmarkInsertionSort(10, b) }
+func BenchmarkInsertionSort100(b *testing.B)    { benchmarkInsertionSort(100, b) }
+func BenchmarkInsertionSort1000(b *testing.B)   { benchmarkInsertionSort(1000, b) }
+func BenchmarkInsertionSort10000(b *testing.B)  { benchmarkInsertionSort(10000, b) }
 func BenchmarkInsertionSort100000(b *testing.B) { benchmarkInsertionSort(100000, b) }

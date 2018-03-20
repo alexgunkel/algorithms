@@ -1,11 +1,17 @@
+/*
+Package sort ...
+*/
 package sort
 
-func Insertion_sort(input *[]int64) {
+/*
+InsertionSort ...
+*/
+func InsertionSort(input *[]int64) {
 	sortables := *input
-	*input = sort_insertion(sortables)
+	*input = insertionSort(sortables)
 }
 
-func sort_insertion(input sortables) sortables {
+func insertionSort(input sortables) sortables {
 	length := len(input)
 	for i := 1; i < length; i++ {
 		for j := i; j > 0; j-- {
@@ -16,6 +22,6 @@ func sort_insertion(input sortables) sortables {
 			}
 		}
 	}
-	
+
 	return input
 }

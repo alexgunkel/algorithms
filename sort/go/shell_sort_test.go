@@ -2,15 +2,15 @@
 package sort
 
 import (
+	"github.com/stretchr/testify/assert"
 	"strconv"
 	"testing"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestShellSort(testing *testing.T) {
 	content, _ := readLines("./data/random10")
 	original_length := len(content)
-	Shell_sort(&content)
+	ShellSort(&content)
 	assert.Equal(testing, original_length, len(content))
 
 	for key, number := range content {
@@ -21,7 +21,6 @@ func TestShellSort(testing *testing.T) {
 	}
 }
 
-
 var shell_result sortables
 
 func benchmarkShellSort(amount int64, b *testing.B) {
@@ -29,14 +28,14 @@ func benchmarkShellSort(amount int64, b *testing.B) {
 	content, _ := readLines(file)
 	var new_result sortables
 	for n := 0; n < b.N; n++ {
-		new_result = sort_shell(content)
+		new_result = shellSort(content)
 	}
 
 	shell_result = new_result
 }
 
-func BenchmarkShellSort10(b *testing.B) { benchmarkShellSort(10, b) }
-func BenchmarkShellSort100(b *testing.B) { benchmarkShellSort(100, b) }
-func BenchmarkShellSort1000(b *testing.B) { benchmarkShellSort(1000, b) }
-func BenchmarkShellSort10000(b *testing.B) { benchmarkShellSort(10000, b) }
+func BenchmarkShellSort10(b *testing.B)     { benchmarkShellSort(10, b) }
+func BenchmarkShellSort100(b *testing.B)    { benchmarkShellSort(100, b) }
+func BenchmarkShellSort1000(b *testing.B)   { benchmarkShellSort(1000, b) }
+func BenchmarkShellSort10000(b *testing.B)  { benchmarkShellSort(10000, b) }
 func BenchmarkShellSort100000(b *testing.B) { benchmarkShellSort(100000, b) }
