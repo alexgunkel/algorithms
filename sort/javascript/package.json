@@ -1,0 +1,10 @@
+{
+	"name": "javascript-algorithms",
+	"description": "Basic traditional algorithms for ecmascript",
+	"devDependencies": {
+		"mocha": "*"
+	},
+	"scripts": {
+	    "test": "mocha"
+	}
+}
