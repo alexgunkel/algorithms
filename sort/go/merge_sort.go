@@ -11,13 +11,37 @@ package sort
 /*
 MergeSort ...
 
-@param	*[]int64 sortable	pointer to a slice of things to sort
+@param	*sortables listOfThings	pointer to a slice of things to sort
 */
-func MergeSort(sortable *[]int64) {
-	input := *sortable
-	*sortable = mergeSort(input)
+func MergeSort(listOfThings *sortables) {
+	input := *listOfThings
+	*listOfThings = mergeSort(input)
 }
 
+/*
+MergeSortInline ...
+
+@param	*sortables listOfThings	pointer to a slice of things to sort
+*/
+func MergeSortInline(listOfThings *sortables) {
+	input := *listOfThings
+	lastOffset := len(input) - 1
+	mergeSortInline(listOfThings, 0, lastOffset)
+}
+
+/*
+MergeSortMixed ...
+
+@param	*sortables listOfThings	pointer to a slice of things to sort
+*/
+func MergeSortMixed(listOfThings *sortables) {
+	input := *listOfThings
+	*listOfThings = mergeSortMixed(input)
+}
+
+/*
+Backend function for standard merge-sort
+*/
 func mergeSort(input sortables) sortables {
 	var length, middle int
 	length = len(input)
@@ -30,6 +54,9 @@ func mergeSort(input sortables) sortables {
 	return merge(mergeSort(input[0:middle]), mergeSort(input[middle:length]))
 }
 
+/*
+Mixed merge-sort backend-function
+*/
 func mergeSortMixed(input sortables) sortables {
 	var length, middle int
 	length = len(input)
@@ -61,4 +88,47 @@ func merge(partOne sortables, partTwo sortables) (result sortables) {
 	}
 
 	return result
+}
+
+// Use only one slice. Don't copy arrays
+//
+// Function expects slice as pointer to avoid any copying
+func mergeSortInline(input *sortables, start int, end int) {
+	var middle int
+	diff := end - start
+
+	if diff < 1 {
+		return
+	}
+
+	middle = (diff+1)/2 + start
+	mergeSortInline(input, start, middle-1)
+	mergeSortInline(input, middle, end)
+	mergeParts(input, start, middle, end)
+}
+
+// Merge parts of arrays
+//
+// Used to merge on one and the same array
+func mergeParts(input *sortables, startFirst int, startSecond int, end int) {
+	listOfThings := *input
+	var tmp int64
+	offsetFirst := startFirst
+	offsetSecond := startSecond
+
+	for offsetFirst < offsetSecond && offsetSecond <= end {
+		if listOfThings[offsetFirst] > listOfThings[offsetSecond] {
+			tmp = listOfThings[offsetSecond]
+			for i := offsetSecond; i > offsetFirst; i-- {
+				listOfThings[i] = listOfThings[i-1]
+			}
+			listOfThings[offsetFirst] = tmp
+			offsetSecond++
+			offsetFirst++
+		} else {
+			offsetFirst++
+		}
+	}
+
+	*input = listOfThings
 }
