@@ -1,26 +1,29 @@
 package sort
 
-func select_sort(input *[]int64) {
-	sortables := *input
-	var output []int64
+/*
+SelectSort ...
+*/
+func SelectSort(input *sortables) {
+	content := *input
+	var output sortables
 	var length int
-	var current_length int
+	var currentLength int
 	var index int
 	var minimum int64
-	length = len(sortables)
-	current_length = length
+	length = len(content)
+	currentLength = length
 	for i := 0; i < length; i++ {
-		minimum = sortables[0]
+		minimum = content[0]
 		index = 0
-		for j := 1; j < current_length; j++ {
-			if sortables[j] < minimum {
+		for j := 1; j < currentLength; j++ {
+			if content[j] < minimum {
 				index = j
-				minimum = sortables[j]
+				minimum = content[j]
 			}
 		}
-		output = append(output, sortables[index])
-		sortables = append(sortables[:index], sortables[index+1:]...)
-		current_length--
+		output = append(output, content[index])
+		content = append(content[:index], content[index+1:]...)
+		currentLength--
 	}
 
 	*input = output
