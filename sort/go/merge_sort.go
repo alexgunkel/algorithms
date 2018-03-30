@@ -51,8 +51,8 @@ func mergeSort(input sortables) sortables {
 
 	middle = length / 2
 
-	if length < 100 {
-		return merge(mergeSort(input[0:middle]), mergeSort(input[middle:length]))
+	if length < 5000 {
+		return merge(mergeSortMixed(input[0:middle]), mergeSortMixed(input[middle:length]))
 	}
 
 	c1 := make(chan sortables)
