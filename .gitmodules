@@ -1,0 +1,3 @@
+[submodule "sort/go"]
+	path = sort/go
+	url = git@github.com:alexgunkel/go_algorithms.git
