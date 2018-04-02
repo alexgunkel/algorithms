@@ -1,3 +1,6 @@
 [submodule "sort/go"]
 	path = sort/go
 	url = git@github.com:alexgunkel/go_algorithms.git
+[submodule "sort/python"]
+	path = sort/python
+	url = git@github.com:alexgunkel/py_algorithms.git
