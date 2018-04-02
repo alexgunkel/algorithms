@@ -4,3 +4,9 @@
 [submodule "sort/python"]
 	path = sort/python
 	url = git@github.com:alexgunkel/py_algorithms.git
+[submodule "sort/php"]
+	path = sort/php
+	url = git@github.com:alexgunkel/php_algorithms.git
+[submodule "sort/javascript"]
+	path = sort/javascript
+	url = git@github.com:alexgunkel/js_algorithms.git
