@@ -26,7 +26,7 @@ Data-Pool: 10  Dauer: 1.2874603271484E-5  Data-Pool: 100  Dauer: 0.0004789829254
 
 ### Python
 
-||  file  ||  duration  ||
+|  file  |  duration  |
 |---------|-----------|
 | merge_sort | |
 | random10 | 0.147216796875 ms |
